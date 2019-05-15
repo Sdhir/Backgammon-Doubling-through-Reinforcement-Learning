@@ -12,7 +12,7 @@ import agent
 # best weights file
 WTS_FILE = 'logs/wt_best_ep5.pth'
 # Read test data csv
-CSV_DIR = os.path.join(os.path.abspath('.'),'data','test_double.csv')
+CSV_DIR = os.path.join(os.path.abspath('.'),'data','26bit_reverse100.txt') # test_double.csv
 df = pd.read_csv(CSV_DIR,header=None,error_bad_lines=False)
 
 # PANDAS version
@@ -54,7 +54,7 @@ agent_net.load_state_dict(torch.load(WTS_FILE))
 agent_net.eval()
 # Predict
 Y_pred = agent.predict(agent_net,testloader)
-#np.save('Y_pred.npy',Y_pred)
+np.save('Y_pred.npy',Y_pred)
 
 if data.shape[1]==27:
     acc = utils.evaluate(Y_gt, Y_pred)
